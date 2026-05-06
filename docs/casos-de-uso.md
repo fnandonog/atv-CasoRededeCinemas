@@ -1,24 +1,26 @@
 # 📊 Diagrama de Casos de Uso
 
-Este diagrama representa as interações entre os atores (Administrador e Espectador) e as funcionalidades principais do sistema CineManage.
-```mermaid
-useCaseDiagram
-    actor "Administrador / Funcionário" as Admin
-    actor "Espectador" as User
+Este diagrama descreve as interações entre os usuários (atores) e as funcionalidades principais do sistema de gestão da Rede de Cinemas.
 
-    package "CineManage System" {
-        usecase "Manter Cadastro de Filmes" as UC1
-        usecase "Gerenciar Unidades de Cinema" as UC2
-        usecase "Programar Sessões" as UC3
-        usecase "Registrar Público da Sessão" as UC4
-        usecase "Consultar Relatórios de Público" as UC5
-        usecase "Consultar Info de Filmes (Elenco/Gênero)" as UC6
-    }
+---
 
-    Admin --> UC1
-    Admin --> UC2
-    Admin --> UC3
-    Admin --> UC4
-    Admin --> UC5
-    
-    User --> UC6
+## 🖼️ Visualização do Diagrama
+![Diagrama de Casos de Uso](./assets/casodeuso.png)
+
+---
+
+## 👥 Atores e Escopo
+
+### 1. Administrador / Funcionário
+Ator responsável pela manutenção dos dados e gestão operacional.
+*   **Ações:** Cadastrar filmes, gerenciar cinemas, programar sessões, registrar o público diário e consultar relatórios gerenciais.
+
+### 2. Espectador
+Ator que interage com o sistema para consumo de informação.
+*   **Ações:** Consultar detalhes sobre os filmes (elenco, gêneros, diretores).
+
+---
+
+## 📝 Notas de Implementação
+*   **Validação de Sessões:** O sistema deve impedir a sobreposição de horários na mesma unidade de cinema.
+*   **Controle de Lotação:** O registro de público deve respeitar a capacidade máxima definida no cadastro do cinema.

@@ -1,64 +1,71 @@
 # 🎬 CineManage - Sistema de Gestão de Redes de Cinema
 
-![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-blueviolet?style=for-the-badge)
-![Architecture](https://img.shields.io/badge/Architecture-MVC_%2B_Service_%2B_Repository-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen?style=for-the-badge)
+![Language](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-MVC_%2B_Service_%2B_Repository-00A3FF?style=for-the-badge)
 ![Database](https://img.shields.io/badge/Database-SQLite-003B57?style=for-the-badge&logo=sqlite)
 
-## 📌 Sobre o Projeto
-Este projeto foi desenvolvido como estudo de caso para a disciplina de **Engenharia de Software**. O objetivo é gerenciar uma rede de cinemas distribuída em diferentes localizações, controlando desde o catálogo de filmes e organização de sessões até o registro de público e relatórios de ocupação.
-
-O foco principal é a aplicação prática de modelagem UML integrada com uma implementação robusta utilizando padrões de projeto (Design Patterns) e arquitetura em camadas.
+## 📌 Visão Geral
+O **CineManage** é um sistema de informação robusto desenvolvido como estudo de caso para a disciplina de **Engenharia de Software**. O projeto visa solucionar os desafios operacionais de uma rede de cinemas, centralizando o controle de sessões, programação de filmes e métricas de público em uma arquitetura escalável e de fácil manutenção.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
-- **Linguagem:** [Inserir Linguagem, ex: Python / Java / Dart]
-- **Persistência:** SQLite
-- **Arquitetura:** MVC (Model-View-Controller) + Service + Repository
-- **Modelagem:** UML 2.5
+## 🚀 Tecnologias e Ferramentas
+*   **Linguagem de Programação:** Python 3.10+
+*   **Persistência de Dados:** SQLite
+*   **Modelagem de Sistemas:** UML 2.5 (PlantUML)
+*   **Versionamento:** Git & GitHub
 
 ---
 
-## 📑 Levantamento de Requisitos
+## 🏗️ Arquitetura do Sistema
+O projeto utiliza uma arquitetura em camadas para garantir o **Baixo Acoplamento** e a **Alta Coesão**, facilitando a implementação de testes unitários e a evolução do software:
+
+1.  **View:** Interface em modo texto para interação direta com o usuário.
+2.  **Controller:** Gerencia o fluxo de dados entre a interface e a lógica de negócio.
+3.  **Service:** Camada central onde são aplicadas as **Regras de Negócio** (Validação de lotação e horários).
+4.  **Repository:** Abstração da camada de dados, responsável pelas operações CRUD no SQLite.
+5.  **Model:** Definição das entidades de domínio (Cinema, Filme e Sessão).
+
+---
+
+## 📑 Requisitos do Negócio
 
 ### Requisitos Funcionais (RF)
-- **RF01 – Manter Cadastro de Filmes:** Operações de CRUD para títulos, duração, gênero e elenco.
-- **RF02 – Gerenciar Unidades de Cinema:** Cadastro de unidades com endereço e capacidade.
-- **RF03 – Programar Sessões:** Vinculação de filmes a salas e horários específicos.
-- **RF04 – Registrar Público:** Registro diário da quantidade de espectadores por sessão.
-- **RF05 – Consultar Relatórios:** Totalização de público por sessão, filme e unidade.
+*   **RF01:** Cadastro e manutenção do catálogo de filmes.
+*   **RF02:** Gestão de unidades físicas (Cinemas) e suas capacidades.
+*   **RF03:** Agendamento dinâmico de sessões.
+*   **RF04:** Registro e controle de público presente.
+*   **RF05:** Geração de relatórios de ocupação.
 
 ### Regras de Negócio (RN)
-- **RN01 – Conflito de Horário:** Não é permitida a sobreposição de sessões na mesma sala (Duração do filme + 20min de intervalo).
-- **RN02 – Limite de Capacidade:** O público registrado não pode exceder a capacidade da sala.
-- **RN03 – Integridade Referencial:** Um filme com sessões agendadas não pode ser excluído.
+*   **RN01 (Conflito):** Proibição de sessões simultâneas na mesma sala (Intervalo obrigatório de 20min).
+*   **RN02 (Lotação):** Bloqueio de registros que excedam a capacidade máxima da unidade.
+*   **RN03 (Integridade):** Impedimento de exclusão de filmes vinculados a sessões futuras.
 
 ---
 
-## 🏗️ Arquitetura e Design
-O sistema segue uma estrutura de camadas para garantir a escalabilidade e facilidade de manutenção:
+## 📊 Documentação Técnica (UML)
 
-1.  **View:** Interface com o usuário.
-2.  **Controller:** Intermédio entre View e lógica de negócio.
-3.  **Service:** Onde residem as Regras de Negócio (validações, cálculos).
-4.  **Repository:** Responsável pela abstração do acesso aos dados (SQL).
-5.  **Model:** Representação das entidades do domínio.
+A documentação detalhada está organizada na pasta `/docs`. Abaixo, os diagramas fundamentais do projeto:
+
+| Artefato | Visualização |
+| :--- | :--- |
+| **Casos de Uso** | [Visualizar Diagrama](docs/assets/casodeuso.png) |
+| **Classes de Domínio** | [Visualizar Diagrama](docs/assets/diagrama-classes.png) |
+| **Sequência (Registro)** | [Visualizar Diagrama](docs/assets/sequencia-registrar-publico.png) |
+| **Atividade (Programação)** | [Visualizar Diagrama](docs/assets/atividade-programar-sessao.png) |
 
 ---
 
-## 📊 Modelagem UML (Documentação Técnica)
+## 🛠️ Instalação e Execução
 
-> *Nota: Os diagramas serão adicionados conforme a evolução das etapas do projeto.*
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/fnandonog/atv-CasoRededeCinemas.git](https://github.com/fnandonog/atv-CasoRededeCinemas.git)
+    cd atv-CasoRededeCinemas
+    ```
 
-### 1. Diagrama de Casos de Uso
-Representação das interações entre os Atores (Administrador/Espectador) e as funcionalidades do sistema.
-### 2. Diagrama de Classes
-Principais entidades: `Cinema`, `Filme`, `Sessão`, `Ator`, `Diretor`.
-### 3. Diagramas de Sequência
-Fluxo de interação para o caso de uso de **Programação de Sessões**.
----
-
-## 🛠️ Como Executar
-1. Clone o repositório:
-   ```bash
-   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+2.  **Acesse a pasta fonte:**
+    ```bash
+    cd src
